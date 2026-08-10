@@ -126,3 +126,13 @@ npm i @tanstack/react-query
 
 ## TESTING
 - `npm run dev` -> `localhost:3000` -> sign in with `Google` -> That's it 🎉
+
+# Chapter 3 — Home Page Setup
+
+- src/components/brand/e0-logo.tsx
+- src/components/home/glass-navbar.tsx
+- src/components/home/home-background.tsx
+- src/components/home/prompt-input.tsx
+- src/components/home/prompt-templates.ts
+- src/app/page.tsx                                              (home page)
+
