@@ -184,3 +184,43 @@ npx prisma migrate dev
 ```bash
 npx prisma generate
 ```
+
+# Chapter 5 — Background Jobs Setup with Inngest
+## 5.1 Inngest setup
+- inngest.com -> docs -> getting started(nextjs) -> `.env`
+```bash
+INNGEST_DEV=1
+```
+
+- 1. Install Inngest: `npm install inngest`
+- 2. Run the Inngest Dev Server -> npx -> `npx inngest-cli@latest dev` -> u will get `http://localhost:8288` in terminal i.e. inngest client ka server
+- 3. Now Create an Inngest client -> 
+    - App Router -> src/features/inngest/client.ts                              (copy/paste)
+```bash
+import { Inngest } from "inngest";
+
+export const inngest = new Inngest({ id: "e0" });
+```
+    - src/app/api/inngest/route.ts                                              (copy/paste)
+```bash
+import { inngest } from "@/features/inngest/client";
+import { serve } from "inngest/next";
+
+export const { GET, POST, PUT } = serve({
+  client: inngest,
+  functions: [],
+});
+```
+- 4. Write your first function -> App Router
+    - Define the function in :- src/features/inngest/functions.ts                  (copy/paste)
+    - Then register the function with your serve handler in :- app/api/inngest/route.ts
+```bash
+functions: [processTask],
+```
+- 5. src/proxy.ts
+    - add this in `src/proxy.ts` public route, so that inngest can be accessed publically and clerk's authentication usse na rok pae.
+```bash
+"/api/inngest(.*)"
+```
+
+- TEST IF YOUR INNGEST APP REGISTER IN INNGEST SERVER OR NOT -> `npm run dev` -> `npx inngest-cli@latest dev` ->  see here (`http://localhost:8288` -> Apps) -> view function -> Invoke function -> 🎉 YOU CAN SEE Fn RUNNING
