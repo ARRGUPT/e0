@@ -136,3 +136,51 @@ npm i @tanstack/react-query
 - src/components/home/prompt-templates.ts
 - src/app/page.tsx                                              (home page)
 
+# Chapter 4 — Database with Prisma via neon
+## 1
+- neon.com -> new project -> write name -> create -> connect -> connection string: prisma -> .env -> show pass -> copy snippet -> paste in your .env
+
+```bash
+DATABASE_URL="postgresql://neondb_owner:**********************
+```
+
+## 2
+- prisma -> get started -> Prisma ORM -> Postgres
+    - Install required dependencies
+    ```bash
+    npm install prisma @types/pg --save-dev
+    npm install @prisma/client @prisma/adapter-pg pg dotenv
+    ```
+
+## 3.1
+```bash
+npx prisma init
+```
+
+## 3.2
+- src/lib/db.ts (copy/paste code)
+
+## 3.3
+```bash
+npx prisma generate 
+```
+
+## 3.4
+- prisma/schema.prisma
+```bash
+model Test {
+  id String @id @default(cuid())
+  title String
+}
+```
+
+## 3.5
+```bash
+npx prisma migrate dev
+```
+- migration name: test
+
+## 3.6
+```bash
+npx prisma generate
+```
