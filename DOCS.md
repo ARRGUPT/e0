@@ -224,3 +224,27 @@ functions: [processTask],
 ```
 
 - TEST IF YOUR INNGEST APP REGISTER IN INNGEST SERVER OR NOT -> `npm run dev` -> `npx inngest-cli@latest dev` ->  see here (`http://localhost:8288` -> Apps) -> view function -> Invoke function -> 🎉 YOU CAN SEE Fn RUNNING
+
+# Chapter 6 — Project CRUD
+
+## 6.1 onBoardUser : (save user details into db after login via clerk)
+- prisma/schema.prisma                                    (user + project model -> prisma migrate and generate)
+- src/features/auth/actions/index.ts                      (onBoardUser, getCurrentUser functionality)
+- src/app/page.tsx ---->>> src/app/(root)/page.tsx
+- src/app/(root)/loading.tsx
+- src/app/(root)/layout.tsx                               (this is how the layout will render like 1st: onBoardUser, then render home page)
+
+## 6.2 write query in prompt input + submit btn clicked -> unique project created in DB and user is redired to that new project ID page
+- prisma/schema.prisma                                    (projects + messages + fragment model -> prisma migrate and generate)
+- `npm i random-word-slugs`
+- src/features/projects/actions/index.ts                  (server action to createProject, getProjects)
+- src/features/projects/hooks/projects.ts
+- src/components/home/prompt-input.tsx                    (routing the user to project id page after successfull project creation in db)
+
+## 6.3 showing created projects in the home page
+- src/features/projects/lib/index.ts                      (getProjectThumbnailUrl)
+- src/features/projects/components/project-grid.tsx       (project grid in home page)
+- src/app/(root)/page.tsx
+
+## 6.4 create that new project ID page i.e. in 6.2
+- src/app/(root)/project/[id]/page.tsx
