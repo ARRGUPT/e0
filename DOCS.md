@@ -248,3 +248,19 @@ functions: [processTask],
 
 ## 6.4 create that new project ID page i.e. in 6.2
 - src/app/(root)/project/[id]/page.tsx
+
+# Chapter 7 — E2B Sandbox Setup
+- Sandbox infrastructure for running generated code.
+
+- e2b.dev -> sign-in -> `documentation` -> `npm i e2b` -> api key -> Where to find API key: click `dashboard` -> `create a key` -> name: e0 -> `create` -> `copy/paste` in -> `.env`
+```bash
+E2B_API_KEY=e2b_bf8*************************
+```
+
+- comes back to `documentation` -> (search) e2b cli -> `npm i -g @e2b/cli` -> `Authentication` -> Option 1: browser authentication -> `e2b auth login` -> login
+
+- sandbox-templates/nextjs/template.ts          (copy/paste)
+- sandbox-templates/nextjs/build.ts             (copy/paste)
+
+- vs code temminal -> cd sandbox-templates -> cd nextjs -> `npx tsx build.ts`
+- e2b dashboard -> templates -> That's it 🎉
