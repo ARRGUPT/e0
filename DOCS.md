@@ -247,7 +247,7 @@ functions: [processTask],
 - src/app/(root)/page.tsx
 
 ## 6.4 create that new project ID page i.e. in 6.2
-- src/app/(root)/project/[id]/page.tsx
+- src/app/(root)/projects/[id]/page.tsx
 
 # Chapter 7 — E2B Sandbox Setup
 - Sandbox infrastructure for running generated code.
@@ -259,8 +259,31 @@ E2B_API_KEY=e2b_bf8*************************
 
 - comes back to `documentation` -> (search) e2b cli -> `npm i -g @e2b/cli` -> `Authentication` -> Option 1: browser authentication -> `e2b auth login` -> login
 
+- `npm i @e2b/code-interpreter`
+
 - sandbox-templates/nextjs/template.ts          (copy/paste)
 - sandbox-templates/nextjs/build.ts             (copy/paste)
 
-- vs code temminal -> cd sandbox-templates -> cd nextjs -> `npx tsx build.ts`
+- vs code temminal -> `cd` sandbox-templates -> `cd` nextjs -> `npx tsx build.ts`
 - e2b dashboard -> templates -> That's it 🎉
+
+# Chapter 8 — System Prompt & Inngest's Agent-Kit Foundations
+
+- src > lib > prompt.ts
+- src > features > inngest > utils.ts
+- src > features > inngest > functions.ts
+- src > features > projects > actions > index.ts
+
+- AgentKit by Inngest -> (scroll down) quick start -> Install AgentKit (npm) ->  `npm install @inngest/agent-kit`
+
+- aistudio.google.com -> api key -> create api key -> `.env`
+```bash
+GEMINI_API_KEY=*************************dMw
+```
+
+- fn -> gemini model
+
+- fn -> code agent
+- fn complete
+
+- route.ts register fn
