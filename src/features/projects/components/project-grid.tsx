@@ -88,7 +88,7 @@ export function ProjectGrid() {
       { id: renaming.id, name: draftName },
       {
         onSuccess: () => {
-          toast.success("Project renamed");
+          toast.success("Project renamed successfully");
           setRenaming(null);
         },
         onError: (error) => toast.error(error.message),
@@ -101,7 +101,7 @@ export function ProjectGrid() {
 
     remove.mutate(deleting.id, {
       onSuccess: () => {
-        toast.success("Project deleted");
+        toast.success("Project deleted successfully");
         setDeleting(null);
       },
       onError: (error) => toast.error(error.message),

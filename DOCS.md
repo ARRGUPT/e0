@@ -116,10 +116,11 @@ npm i @tanstack/react-query
        - src/proxy.ts                                                           (update this file)
   - 8. Update your environment variables
     
+    - send Clerk to the app, not the landing
     ```bash
     NEXT_PUBLIC_CLERK_SIGN_IN_URL=/sign-in
-    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/
-    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/
+    NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL=/dashboard
+    NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL=/dashboard
     ```
   - 9. src/app/(auth)/layout.tsx                 (auth layout ka UI updated)    (copy/paste)
   - 10. src/app/page.tsx                         (add `<UserButton />` below `<ModeToggle />`)

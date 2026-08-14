@@ -66,7 +66,7 @@ export default function ProjectHeader({ projectId }: { projectId: string }) {
 
         <DropdownMenuContent side="bottom" align="start">
           <DropdownMenuItem asChild>
-            <Link href="/">
+            <Link href="/dashboard">
               <ChevronLeftIcon className="size-4" />
               <span>Go to Dashboard</span>
             </Link>
