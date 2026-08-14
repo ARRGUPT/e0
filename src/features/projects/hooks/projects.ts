@@ -1,5 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { createProject, getProjects, getProjectById } from "../actions";
+import {
+  createProject,
+  getProjects,
+  getProjectById,
+  renameProject,
+  deleteProject,
+} from "../actions";
 
 export type ActionError = {
   error: string;
@@ -45,5 +51,31 @@ export const useGetProjectById = (id: string) => {
   return useQuery({
     queryKey: ["project", id],
     queryFn: async () => unwrapActionResult(await getProjectById(id)),
+  });
+};
+
+export const useRenameProject = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async ({ id, name }: { id: string; name: string }) =>
+      unwrapActionResult(await renameProject(id, name)),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      queryClient.invalidateQueries({ queryKey: ["project", data.id] });
+    },
+  });
+};
+
+export const useDeleteProject = () => {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: async (id: string) =>
+      unwrapActionResult(await deleteProject(id)),
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["projects"] });
+      queryClient.removeQueries({ queryKey: ["project", data.id] });
+    },
   });
 };

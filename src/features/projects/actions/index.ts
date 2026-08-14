@@ -75,6 +75,61 @@ export const getProjects = async () => {
   }
 };
 
+export const renameProject = async (id: string, name: string) => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return { error: "Unauthorized" };
+  }
+
+  const trimmed = name.trim();
+
+  if (trimmed.length === 0 || trimmed.length > 50) {
+    return { error: "Name must be between 1 and 50 characters" };
+  }
+
+  try {
+    // updateMany so ownership lives in the WHERE, not a post-fetch check.
+    const { count } = await prisma.project.updateMany({
+      where: { id, userId: user.id },
+      data: { name: trimmed },
+    });
+
+    if (count === 0) {
+      return { error: "Project not found" };
+    }
+
+    return { id, name: trimmed };
+  } catch (error) {
+    console.error("❌ Error renaming project:", error);
+    return { error: "Failed to rename project" };
+  }
+};
+
+export const deleteProject = async (id: string) => {
+  const user = await getCurrentUser();
+
+  if (!user) {
+    return { error: "Unauthorized" };
+  }
+
+  try {
+    // Messages + fragments cascade via the schema relation.
+    const { count } = await prisma.project.deleteMany({
+      where: { id, userId: user.id },
+    });
+
+    if (count === 0) {
+      return { error: "Project not found" };
+    }
+
+    return { id };
+  } catch (error) {
+    console.error("❌ Error deleting project:", error);
+    return { error: "Failed to delete project" };
+  }
+};
+
 export const getProjectById = async (id: string) => {
   const user = await getCurrentUser();
 

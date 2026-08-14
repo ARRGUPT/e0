@@ -90,7 +90,7 @@ export default function MessageForm({ projectId }: { projectId: string }) {
           <kbd className="pointer-events-none ml-auto inline-flex h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
             <span>&#8984;</span>Enter
           </kbd>
-          &nbsp; to submit
+          &nbsp; to next line
         </div>
         <Button
           className={cn(

@@ -69,14 +69,14 @@ export function ProjectView({ projectId }: { projectId: string }) {
                 </TabsTrigger>
               </TabsList>
 
-              <div className="ml-auto flex items-center gap-x-2">
+              {/* <div className="ml-auto flex items-center gap-x-2">
                 <Button asChild size="sm" variant="outline">
                   <Link href="/">
                     <CrownIcon className="mr-2 size-4" />
                     Upgrade
                   </Link>
                 </Button>
-              </div>
+              </div> */}
             </div>
 
             <TabsContent
