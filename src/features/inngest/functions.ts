@@ -8,7 +8,7 @@ import {
   createNetwork,
   createState,
   createTool,
-  gemini,
+  openai,
 } from "@inngest/agent-kit";
 import { FRAGMENT_TITLE_PROMPT, PROMPT, RESPONSE_PROMPT } from "@/lib/prompt";
 import z from "zod";
@@ -44,6 +44,7 @@ export const codeAgentFunction = inngest.createFunction(
     const sandboxId = await step.run("get-sandbox-id", async () => {
       const sandbox = await Sandbox.create({
         template: "ugwj9f6y2wocdpps7omf",
+        timeoutMs: 30 * 60 * 1000,
       });
 
       return sandbox.sandboxId;
@@ -77,24 +78,35 @@ export const codeAgentFunction = inngest.createFunction(
       { messages: previousMessages },
     );
 
-    const geminiModel = gemini({
-      model: "gemini-2.5-flash",
-      step,
-      apiKey: process.env.GEMINI_API_KEY!,
+    // const geminiModel = gemini({
+    //   model: "gemini-flash-latest",
+    //   step,
+    //   apiKey: process.env.GEMINI_API_KEY!,
+    //   defaultParameters: {
+    //     generationConfig: {
+    //       temperature: 0,
+    //       maxOutputTokens: 8192,
+    //       // thinkingConfig: { thinkingBudget: 0 },
+    //     },
+    //   },
+    // } as Parameters<typeof gemini>[0]);
+
+    const model = openai({
+      model: "openai/gpt-oss-120b",
+      baseUrl: "https://api.groq.com/openai/v1",
+      apiKey: process.env.GROQ_API_KEY!,
       defaultParameters: {
-        generationConfig: {
-          temperature: 0,
-          maxOutputTokens: 8192,
-          thinkingConfig: { thinkingBudget: 0 },
-        },
-      },
-    } as Parameters<typeof gemini>[0]);
+        temperature: 0,
+        reasoning_effort: "low",
+      } as Parameters<typeof openai>[0]["defaultParameters"],
+    });
 
     const codeAgent = createAgent({
       name: "code-agent",
       description: "An expert coding agent",
       system: PROMPT,
-      model: gemini({ model: "gemini-2.5-flash" }),
+      // model: geminiModel,
+      model: model,
       tools: [
         // 1. Terminal
         createTool({
@@ -237,7 +249,8 @@ export const codeAgentFunction = inngest.createFunction(
     const { summary, files } = result.state.data;
 
     const makeTextAgent = (name: string, system: string) =>
-      createAgent({ name, system, model: geminiModel });
+      // createAgent({ name, system, model: geminiModel });
+      createAgent({ name, system, model: model });
 
     const fragmentTitleGenerator = makeTextAgent(
       "fragment-title-generator",
@@ -265,7 +278,7 @@ export const codeAgentFunction = inngest.createFunction(
 
     const sandboxUrl = await step.run("get-sandbox-url", async () => {
       const sandbox = await connectSandbox(sandboxId);
-      return `http://${sandbox.getHost(3000)}`;
+      return `https://${sandbox.getHost(3000)}`;
     });
 
     await step.run("save-result", async () => {

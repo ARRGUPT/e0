@@ -269,12 +269,18 @@ E2B_API_KEY=e2b_bf8*************************
 
 # Chapter 8 — System Prompt & Inngest's Agent-Kit Foundations
 
-- src > lib > prompt.ts
-- src > features > inngest > utils.ts
-- src > features > inngest > functions.ts
-- src > features > projects > actions > index.ts
+- src/lib/prompt.ts
+- src/features/inngest/utils.ts
+- src/features/inngest/functions.ts
+- src/features/projects/actions/index.ts
+- src/app/api/inngest/route.ts
 
 - AgentKit by Inngest -> (scroll down) quick start -> Install AgentKit (npm) ->  `npm install @inngest/agent-kit`
+
+## (RECOMMENDED): GROQ WILL ALWAYS WORK ✅
+```bash
+GROQ_API_KEY=gsk_hEKy***************************
+```
 
 - aistudio.google.com -> api key -> create api key -> `.env`
 ```bash

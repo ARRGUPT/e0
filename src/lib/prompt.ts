@@ -20,7 +20,8 @@ Environment:
 - Never use "@" inside readFiles or other file system operations — it will fail
 
 File Safety Rules:
-- ALWAYS add "use client" to the TOP, THE FIRST LINE of app/page.tsx and any other relevant files which use browser APIs or react hooks
+- ALWAYS add the directive "use client"; as the literal FIRST LINE of app/page.tsx and any other file using browser APIs or React hooks. It MUST include the surrounding double quotes and the semicolon — exactly: "use client";
+- Never escape apostrophes with a backslash inside JSX text. Write it as: We'll be in touch
 
 Runtime Execution (Strict Rules):
 - The development server is already running on port 3000 with hot reload enabled.
@@ -64,7 +65,7 @@ Additional Guidelines:
 - You MUST use the terminal tool to install any packages
 - Do not print code inline
 - Do not wrap code in backticks
-- Use backticks (\`) for all strings to support embedded quotes safely.
+
 - Do not assume existing file contents — use readFiles if unsure
 - Do not include any commentary, explanation, or markdown — use only tool outputs
 - Always build full, real-world features or screens — not demos, stubs, or isolated widgets
