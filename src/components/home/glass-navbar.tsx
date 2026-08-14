@@ -12,8 +12,10 @@ export function GlassNavbar() {
         <Link href="/" className="flex items-center">
           <E0Logo className="gap-2" />
         </Link>
-        <ModeToggle />
-        <UserButton />
+        <div className="flex items-center gap-2">
+          <ModeToggle />
+          <UserButton />
+        </div>
       </nav>
     </header>
   );
