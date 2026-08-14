@@ -2,6 +2,12 @@ import { GlassNavbar } from "@/components/home/glass-navbar";
 import { HomeBackground } from "@/components/home/home-background";
 import { ProjectGrid } from "@/features/projects/components/project-grid";
 import { PromptInput } from "@/components/home/prompt-input";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Dashboard - e0",
+  description: "Your e0 projects.",
+};
 
 export default function Home() {
   return (
@@ -15,7 +21,9 @@ export default function Home() {
           </h1>
           <PromptInput />
         </div>
-        <div className="mt-16 w-full max-w-5xl"><ProjectGrid /></div>
+        <div className="mt-16 w-full max-w-5xl">
+          <ProjectGrid />
+        </div>
       </main>
     </div>
   );

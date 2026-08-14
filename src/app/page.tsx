@@ -22,7 +22,7 @@ import { HomeBackground } from "@/components/home/home-background";
 import { ModeToggle } from "@/components/ui/mode-toggle";
 
 export const metadata: Metadata = {
-  title: "e0 — describe an app, watch it get built",
+  title: "e0 - describe an app, watch it get built",
   description:
     "Type what you want. e0 plans it, writes the code, runs it in a live sandbox, and hands you a URL you can open — no setup, no local install.",
 };
