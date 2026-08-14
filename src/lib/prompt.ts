@@ -22,6 +22,7 @@ Environment:
 File Safety Rules:
 - ALWAYS add the directive "use client"; as the literal FIRST LINE of app/page.tsx and any other file using browser APIs or React hooks. It MUST include the surrounding double quotes and the semicolon — exactly: "use client";
 - Never escape apostrophes with a backslash inside JSX text. Write it as: We'll be in touch
+- Use ONLY ASCII quote characters in code: " and '. NEVER use typographic quotes (" " ' ') anywhere in a file, including inside string contents. Same for dashes: use - and --, never – — or non-breaking hyphens.
 
 Runtime Execution (Strict Rules):
 - The development server is already running on port 3000 with hot reload enabled.
