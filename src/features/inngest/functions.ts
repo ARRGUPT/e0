@@ -134,10 +134,6 @@ export const codeAgentFunction = inngest.createFunction(
 
                 return result.stdout;
               } catch (error) {
-                // console.log(
-                //   `Command failed: ${error} \n stdout: ${buffers.stdout}\n stderr: ${buffers.stderr}`,
-                // );
-
                 return `Command failed: ${error} \n stdout: ${buffers.stdout}\n stderr: ${buffers.stderr}`;
               }
             });
@@ -197,7 +193,6 @@ export const codeAgentFunction = inngest.createFunction(
                 const sanbox = await Sandbox.connect(sandboxId);
 
                 const contents: any = [];
-                // console.log(contents);
 
                 for (const file of files) {
                   const content = await sanbox.files.read(file);
@@ -214,7 +209,6 @@ export const codeAgentFunction = inngest.createFunction(
 
       lifecycle: {
         onResponse: async ({ result, network }) => {
-          // console.log(result);
           const lastAssistantMessageText =
             lastAssistantTextMessageContent(result);
 
@@ -245,7 +239,6 @@ export const codeAgentFunction = inngest.createFunction(
     });
 
     const result = await network.run(event.data.value, { state });
-    // console.log(result);
     const { summary, files } = result.state.data;
 
     const makeTextAgent = (name: string, system: string) =>
@@ -269,8 +262,6 @@ export const codeAgentFunction = inngest.createFunction(
 
     const fragmentTitle = agentOutputText(fragmentTitleOutput, "Untitled");
     const responseText = agentOutputText(responseOutput, "Here you go");
-
-    // console.log(files);
 
     const isError =
       !result.state.data.summary ||

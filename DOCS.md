@@ -293,3 +293,31 @@ GEMINI_API_KEY=*************************dMw
 - fn complete
 
 - route.ts register fn
+
+# Chapter 9 — Messages: Model, Actions, Hooks & Chat UI
+
+- src > features > messages > actions > index.ts
+- src > features > messages > hooks > messages.ts
+- src > app > (root) > projects > [id] > page.tsx
+- src > components > projects > project-view.tsx
+- src > components > projects > project-header.tsx
+- src > features > projects > fragment-types.ts
+- `npm i streamdown`
+- src > components > ai-elements > response.tsx
+- src > components > projects > message-card.tsx
+- `npm i react-textarea-autosize`
+- src/components/projects/message-form.tsx
+- src > components > projects > message-loader.tsx
+- src > components > projects > message-container.tsx
+
+# Chapter 10 — Viewing Output: Code Explorer, Live Preview & Wiring 
+
+- src > components > ui > hint.tsx
+- src > components > projects > fragment-web.tsx
+- src > lib > utils.ts
+- src > com onents > ro•ects > code-view > code-theme.css
+- `npm i prismjs`
+- `npm i --save-dev @types/prismjs`
+- src > components > projects > code-view > index.tsx
+- src > components > projects > tree-view.tsx
+- src > components > projects > file-explorer.tsx
